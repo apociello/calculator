@@ -27,3 +27,17 @@ function operate(n1, operator, n2) {
             return divide(n1, n2);
     }
 }
+
+let display = document.querySelector('.display');
+let clean = document.querySelector('#clean');
+clean.addEventListener('click', () => display.textContent = '')
+
+const buttons = document.querySelectorAll('button')
+buttons.forEach((button) => button.addEventListener('click', () => {
+    if (button.textContent == 'CLEAR' || button.textContent == 'DELETE' || button.textContent == '=') {
+        return
+    }
+    display.textContent += button.textContent
+}))
+
+
