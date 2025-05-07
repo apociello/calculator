@@ -31,6 +31,7 @@ function operate(n1, operator, n2) {
 let n1 = 0;
 let n2;
 let operator;
+let finalResult = false;
 
 let display = document.querySelector('.display');
 
@@ -47,7 +48,14 @@ const deleteLast = document.querySelector('#delete');
 deleteLast.addEventListener('click', () => display.textContent = display.textContent.slice(0,-1));
 
 const equal = document.querySelector('#equal');
-equal.addEventListener('click', () => display.textContent = operate(Number(n1), operator, Number(n2)) )
+equal.addEventListener('click', () => {
+    const result = display.textContent = operate(Number(n1), operator, Number(n2));
+    result;
+    n1 = result;
+    operator = undefined;
+    n2 = undefined;
+    finalResult = true;
+})
 
 
 const buttons = document.querySelectorAll('button')
@@ -61,7 +69,6 @@ buttons.forEach((button) => button.addEventListener('click', () => {
         operator = button.textContent;
         return n1, operator
     } else if (operator !== undefined && n2 == undefined) {
-        n2 == 0;
         n2 = button.textContent;
         display.textContent = n2;
         return n2;
@@ -69,10 +76,15 @@ buttons.forEach((button) => button.addEventListener('click', () => {
         n2 += button.textContent;
     }
 
-    display.textContent += button.textContent;
+    if (finalResult) {
+        display.textContent = button.textContent;
+        finalResult = false;
+        return finalResult
+    } else {
+        display.textContent += button.textContent;
+    }
+    
 }))
 
 
-
-
-
+//33-10= 23 - 10= 13 ERROR
