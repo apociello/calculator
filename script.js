@@ -29,8 +29,11 @@ function operate(n1, operator, n2) {
 }
 
 let display = document.querySelector('.display');
-let clean = document.querySelector('#clean');
-clean.addEventListener('click', () => display.textContent = '')
+const clean = document.querySelector('#clean');
+clean.addEventListener('click', () => display.textContent = '');
+const deleteLast = document.querySelector('#delete');
+deleteLast.addEventListener('click', () => display.textContent = display.textContent.slice(0,-1));
+
 
 const buttons = document.querySelectorAll('button')
 buttons.forEach((button) => button.addEventListener('click', () => {
