@@ -28,11 +28,26 @@ function operate(n1, operator, n2) {
     }
 }
 
+let n1 = 0;
+let n2;
+let operator;
+
 let display = document.querySelector('.display');
+
 const clean = document.querySelector('#clean');
-clean.addEventListener('click', () => display.textContent = '');
+clean.addEventListener('click', () => {
+    n1 = 0;
+    n2 = undefined;
+    operator = undefined;
+    display.textContent = ''
+    return n1, n2, operator;
+});
+
 const deleteLast = document.querySelector('#delete');
 deleteLast.addEventListener('click', () => display.textContent = display.textContent.slice(0,-1));
+
+const equal = document.querySelector('#equal');
+equal.addEventListener('click', () => display.textContent = operate(Number(n1), operator, Number(n2)) )
 
 
 const buttons = document.querySelectorAll('button')
@@ -40,7 +55,24 @@ buttons.forEach((button) => button.addEventListener('click', () => {
     if (button.textContent == 'CLEAR' || button.textContent == 'DELETE' || button.textContent == '=') {
         return
     }
-    display.textContent += button.textContent
+
+    if (button.textContent == '+' || button.textContent == '-' || button.textContent == '*' || button.textContent == '/') {
+        n1 = display.textContent;
+        operator = button.textContent;
+        return n1, operator
+    } else if (operator !== undefined && n2 == undefined) {
+        n2 == 0;
+        n2 = button.textContent;
+        display.textContent = n2;
+        return n2;
+    } else if (n2 !== undefined) {
+        n2 += button.textContent;
+    }
+
+    display.textContent += button.textContent;
 }))
+
+
+
 
 
