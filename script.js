@@ -65,6 +65,14 @@ buttons.forEach((button) => button.addEventListener('click', () => {
     }
 
     if (button.textContent == '+' || button.textContent == '-' || button.textContent == '*' || button.textContent == '/') {
+        if (operator !== undefined && n2 !== undefined) {
+            const result = display.textContent = operate(Number(n1), operator, Number(n2));
+            result;
+            n1 = result;
+            operator = button.textContent;
+            n2 = undefined;
+            finalResult = true;
+        }
         finalResult = false;
         n1 = display.textContent;
         operator = button.textContent;
