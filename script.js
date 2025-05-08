@@ -65,6 +65,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
     }
 
     if (button.textContent == '+' || button.textContent == '-' || button.textContent == '*' || button.textContent == '/') {
+        finalResult = false;
         n1 = display.textContent;
         operator = button.textContent;
         return n1, operator
@@ -85,6 +86,3 @@ buttons.forEach((button) => button.addEventListener('click', () => {
     }
     
 }))
-
-
-//33-10= 23 - 10= 13 ERROR
