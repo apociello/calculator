@@ -49,6 +49,10 @@ deleteLast.addEventListener('click', () => display.textContent = display.textCon
 
 const equal = document.querySelector('#equal');
 equal.addEventListener('click', () => {
+    if (operator == undefined && n2 == undefined) {
+        return 
+    }
+
     const result = display.textContent = operate(Number(n1), operator, Number(n2));
     result;
     n1 = result;
