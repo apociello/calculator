@@ -53,6 +53,14 @@ equal.addEventListener('click', () => {
         return 
     }
 
+    if (operator == '/' && n2 == 0){
+        display.textContent = 'ERROR'
+        n1 = 0;
+        operator = undefined;
+        n2 = undefined;
+        finalResult = true;
+        return
+    }
     const result = display.textContent = operate(Number(n1), operator, Number(n2));
     result;
     n1 = result;
