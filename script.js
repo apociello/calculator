@@ -28,6 +28,10 @@ function operate(n1, operator, n2) {
     }
 }
 
+function moreThan2decimals(num) {
+    return num % 1 !== 0 && num.toString().split('.')[1]?.length > 2;
+}
+
 let n1 = 0;
 let n2;
 let operator;
@@ -66,8 +70,12 @@ equal.addEventListener('click', () => {
         finalResult = true;
         return
     }
-    const result = display.textContent = operate(Number(n1), operator, Number(n2));
-    result;
+    let result = operate(Number(n1), operator, Number(n2))
+
+    if (moreThan2decimals(result)) {
+        result = Number(result.toFixed(2))
+    }
+    display.textContent = result;
     n1 = result;
     operator = undefined;
     n2 = undefined;
@@ -83,8 +91,12 @@ buttons.forEach((button) => button.addEventListener('click', () => {
 
     if (button.textContent == '+' || button.textContent == '-' || button.textContent == '*' || button.textContent == '/') {
         if (operator !== undefined && n2 !== undefined) {
-            const result = display.textContent = operate(Number(n1), operator, Number(n2));
-            result;
+            let result = operate(Number(n1), operator, Number(n2));
+            
+            if (moreThan2decimals(result)) {
+                result = Number(result.toFixed(2))
+            }
+            display.textContent = result;
             n1 = result;
             operator = button.textContent;
             n2 = undefined;
