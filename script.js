@@ -45,7 +45,12 @@ clean.addEventListener('click', () => {
 });
 
 const deleteLast = document.querySelector('#delete');
-deleteLast.addEventListener('click', () => display.textContent = display.textContent.slice(0,-1));
+deleteLast.addEventListener('click', () => {
+    if (n2 !==undefined) {
+        n2 = Number(n2.toString().slice(0,-1))
+    }
+    display.textContent = display.textContent.slice(0,-1)
+});
 
 const equal = document.querySelector('#equal');
 equal.addEventListener('click', () => {
