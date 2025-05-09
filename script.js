@@ -28,8 +28,14 @@ function operate(n1, operator, n2) {
     }
 }
 
-function moreThan2decimals(num) {
-    return num % 1 !== 0 && num.toString().split('.')[1]?.length > 2;
+function moreThan15digits(num) {
+    const str = num.toString();
+      
+    if (str.length <= 15) {
+        return str;
+    }
+      
+    return Number(num).toExponential(8).slice(0, 15);
 }
 
 let n1 = 0;
@@ -71,10 +77,7 @@ equal.addEventListener('click', () => {
         return
     }
     let result = operate(Number(n1), operator, Number(n2))
-
-    if (moreThan2decimals(result)) {
-        result = Number(result.toFixed(2))
-    }
+    result = moreThan15digits(result)
     display.textContent = result;
     n1 = result;
     operator = undefined;
@@ -92,10 +95,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
     if (button.textContent == '+' || button.textContent == '-' || button.textContent == '*' || button.textContent == '/') {
         if (operator !== undefined && n2 !== undefined) {
             let result = operate(Number(n1), operator, Number(n2));
-            
-            if (moreThan2decimals(result)) {
-                result = Number(result.toFixed(2))
-            }
+            result = moreThan15digits(result)
             display.textContent = result;
             n1 = result;
             operator = button.textContent;
@@ -118,7 +118,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
         display.textContent = button.textContent;
         finalResult = false;
         return finalResult
-    } else {
+    } else if (display.textContent.length < 15) {
         display.textContent += button.textContent;
     }
     
