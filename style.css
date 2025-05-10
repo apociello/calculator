@@ -53,6 +53,11 @@ button {
     background-color: white;
 }
 
+button:active {
+    transform: scale(0.95);
+    background-color: 	#ede9fe
+}
+
 .numbers button {
     aspect-ratio: 1/1;
 }
