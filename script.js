@@ -30,10 +30,12 @@ function operate(n1, operator, n2) {
 
 function moreThan15digits(num) {
     const str = num.toString();
-      
+    if (num < 999999999999.99 && str.length > 15){
+        return str.slice(0,15);
+    }
     if (str.length <= 15) {
         return str;
-    }
+    } else if (num)
       
     return Number(num).toExponential(8).slice(0, 15);
 }
