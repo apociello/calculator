@@ -30,14 +30,21 @@ function operate(n1, operator, n2) {
 
 function moreThan15digits(num) {
     const str = num.toString();
+    if (num < 100000000000 && moreThan3Decimals(num)) {
+        return Number(num.toFixed(3))
+    }
     if (num < 999999999999.99 && str.length > 15){
         return str.slice(0,15);
     }
     if (str.length <= 15) {
         return str;
-    } else if (num)
+    }
       
     return Number(num).toExponential(8).slice(0, 15);
+}
+
+function moreThan3Decimals(num) {
+  return num % 1 !== 0 && num.toString().split(".")[1]?.length > 3;
 }
 
 let n1 = 0;
