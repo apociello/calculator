@@ -28,23 +28,22 @@ function operate(n1, operator, n2) {
     }
 }
 
-function moreThan15digits(num) {
-    const str = num.toString();
-    if (num < 100000000000 && moreThan3Decimals(num)) {
-        return Number(num.toFixed(3))
-    }
-    if (num < 999999999999.99 && str.length > 15){
-        return str.slice(0,15);
-    }
-    if (str.length <= 15) {
-        return str;
-    }
-      
-    return Number(num).toExponential(8).slice(0, 15);
-}
-
 function moreThan3Decimals(num) {
   return num % 1 !== 0 && num.toString().split(".")[1]?.length > 3;
+}
+
+function numberFormat(num) {
+    const str = num.toString();
+
+    if (num < 100000000000 && moreThan3Decimals(num)) {
+        return Number(num.toFixed(3))
+    } else if (num < 999999999999.99 && str.length > 15){
+        return str.slice(0,15);
+    } else if (str.length <= 15) {
+        return str;
+    } else {
+        return Number(num).toExponential(8).slice(0, 15);
+    }
 }
 
 let n1 = 0;
@@ -52,7 +51,7 @@ let n2;
 let operator;
 let finalResult = false;
 
-let display = document.querySelector('.display');
+let display = document.querySelector('#display');
 
 const clean = document.querySelector('#clean');
 clean.addEventListener('click', () => {
@@ -60,7 +59,6 @@ clean.addEventListener('click', () => {
     n2 = undefined;
     operator = undefined;
     display.textContent = ''
-    return n1, n2, operator;
 });
 
 const deleteLast = document.querySelector('#delete');
@@ -86,7 +84,7 @@ equal.addEventListener('click', () => {
         return
     }
     let result = operate(Number(n1), operator, Number(n2))
-    result = moreThan15digits(result)
+    result = numberFormat(result)
     display.textContent = result;
     n1 = result;
     operator = undefined;
@@ -104,7 +102,7 @@ buttons.forEach((button) => button.addEventListener('click', () => {
     if (button.textContent == '+' || button.textContent == '-' || button.textContent == '*' || button.textContent == '/') {
         if (operator !== undefined && n2 !== undefined) {
             let result = operate(Number(n1), operator, Number(n2));
-            result = moreThan15digits(result)
+            result = numberFormat(result)
             display.textContent = result;
             n1 = result;
             operator = button.textContent;
@@ -114,11 +112,11 @@ buttons.forEach((button) => button.addEventListener('click', () => {
         finalResult = false;
         n1 = display.textContent;
         operator = button.textContent;
-        return n1, operator
+        return
     } else if (operator !== undefined && n2 == undefined) {
         n2 = button.textContent;
         display.textContent = n2;
-        return n2;
+        return
     } else if (n2 !== undefined) {
         n2 += button.textContent;
     }

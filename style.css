@@ -5,7 +5,6 @@
 }
 
 body{
-    font-size: 25px;
     background-color: black;
 }
 
@@ -19,7 +18,7 @@ body{
     background-color: grey;
 }
 
-.display {
+#display {
     border: 2px solid black;
     margin: 16px;
     padding: 5px;
@@ -36,8 +35,6 @@ body{
 
 .buttons {
     margin: 16px;
-    display: flex;
-    flex-direction: column;
 }
 
 button {
@@ -55,7 +52,7 @@ button {
 
 button:active {
     transform: scale(0.95);
-    background-color: 	#ede9fe
+    background-color: #ede9fe
 }
 
 .numbers button {
@@ -78,7 +75,7 @@ button:active {
 .numbers {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px
+    gap: 5px;
 }
 
 
